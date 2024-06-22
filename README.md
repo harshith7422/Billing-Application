@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# Billing Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+A simple billing platform application that allows users to log in with Google, view their usage details and billing information, and generate invoices. The application consists of a frontend built with React and a backend built with Node.js, Express, and MongoDB.
 
-## Available Scripts
+## Prerequisites
+- Node.js and npm installed on your machine
+- MongoDB server running (locally or on the cloud, e.g., MongoDB Atlas)
+- Google Developer account to obtain OAuth 2.0 Client ID and Client Secret
 
-In the project directory, you can run:
+## Setup
 
-### `npm start`
+### Backend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Navigate to the `backend` directory:**
+    ```bash
+    cd backend
+    ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. **Install the dependencies:**
+    ```bash
+    npm install
+    ```
 
-### `npm test`
+3. **Create a `.env` file in the `backend` directory with the following content:**
+    ```env
+    GOOGLE_CLIENT_ID=your-google-client-id
+    GOOGLE_CLIENT_SECRET=your-google-client-secret
+    SESSION_SECRET_KEY=736669a411d03919584a40e8b037b1098a3
+    MONGO_URI=your-mongodb-uri
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. **Ensure MongoDB is running:**
+   - If using MongoDB locally, make sure your MongoDB server is running.
+   - If using MongoDB Atlas, ensure your cluster is up and running and replace `your-mongodb-uri` with your actual connection string.
 
-### `npm run build`
+5. **Start the backend server:**
+    ```bash
+    npm start
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Navigate to the `frontend` directory:**
+    ```bash
+    cd frontend
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install the dependencies:**
+    ```bash
+    npm install
+    ```
 
-### `npm run eject`
+3. **Start the frontend server:**
+    ```bash
+    npm start
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Backend
+- `server.js`: Main entry point for the backend server.
+- `config/passportConfig.js`: Configuration file for Passport.js with Google OAuth.
+- `models/User.js`: Mongoose model for User.
+- `routes/usage.js`: Route handler for fetching usage details.
+- `routes/billing.js`: Route handler for fetching billing information and generating invoices.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend
+- `src/components/Login.js`: Component for Google login.
+- `src/components/UsageDetails.js`: Component to display usage details.
+- `src/components/BillingInformation.js`: Component to display billing information.
+- `src/components/GenerateInvoice.js`: Component to generate invoice.
+- `src/App.js`: Main component that brings all other components together.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+### Google Login
+- Click on the "Sign in with Google" button.
+- Authenticate using your Google account.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Fetching Data
+- Once logged in, the application will automatically fetch and display usage details and billing information.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Generating Invoice
+- Click on the "Generate Invoice" button to generate an invoice based on the billing information.
 
-### Code Splitting
+## Troubleshooting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Common Issues
 
-### Analyzing the Bundle Size
+- **Dependencies not installed:**
+  Ensure you run `npm install` in both the `backend` and `frontend` directories.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Environment variables not set:**
+  Ensure the `.env` file in the `backend` directory contains the correct values for `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `SESSION_SECRET_KEY`, and `MONGO_URI`.
 
-### Making a Progressive Web App
+- **MongoDB connection issues:**
+  Ensure your MongoDB server is running and the URI is correct.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **OAuth2 errors:**
+  Ensure your Google OAuth credentials are correct and properly set in the `.env` file.
 
-### Advanced Configuration
+### Logs
+- Backend logs will appear in the terminal where you run `npm start`.
+- Frontend logs and errors will appear in the browser console.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+Feel free to fork this project and contribute by submitting a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
